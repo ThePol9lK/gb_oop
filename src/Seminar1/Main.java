@@ -1,4 +1,7 @@
+package Seminar1;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,7 +11,7 @@ public class Main {
 
 
 
-        ArrayList<Product> products = new ArrayList<Product>();
+        List<Product> products = new ArrayList<Product>();
 
         Dispensing_machine machine = new Dispensing_machine(products);
         machine.add_product(product);

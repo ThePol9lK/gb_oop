@@ -1,3 +1,5 @@
+package Seminar1;
+
 class Bottle extends Product{
     private int volume;
 

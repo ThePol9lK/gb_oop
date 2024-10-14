@@ -1,11 +1,14 @@
+package Seminar1;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Dispensing_machine {
 
-    private ArrayList<Product> products;
+    private List<Product> products;
 
-    public Dispensing_machine(ArrayList<Product> products) {
+    public Dispensing_machine(List<Product> products) {
         this.products = products;
     }
 
@@ -39,11 +42,4 @@ public class Dispensing_machine {
         this.products.remove(count);
     }
 
-
-
-//
-//    Методы
-//            Add_product()
-//                delete_product()
-//            sort
 }
