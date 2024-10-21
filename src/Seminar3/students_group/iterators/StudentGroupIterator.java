@@ -1,4 +1,4 @@
-package Seminar3.students_group;
+package Seminar3.students_group.iterators;
 
 import Seminar3.student.Student;
 

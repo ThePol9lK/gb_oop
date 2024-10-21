@@ -1,15 +1,15 @@
-package Seminar3.service;
+package Seminar4.service;
 
 
-import Seminar3.student.Student;
-import Seminar3.students_group.StudentGroup;
+import Seminar4.student.Student;
+import Seminar4.students_group.StudentGroup;
 
 public class Service {
     private int GenStudentId;
-    StudentGroup studentGroup;
+    StudentGroup<Student> studentGroup;
 
     public Service() {
-        studentGroup = new StudentGroup();
+        studentGroup = new StudentGroup<>();
     }
 
     public void addStudent(String name, int age){

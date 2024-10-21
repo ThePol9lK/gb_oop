@@ -1,9 +1,9 @@
-package Seminar3.students_group.iterators;
+package Seminar3.students_group;
 
 import Seminar3.student.comparators.CompareStudentByAge;
 import Seminar3.student.comparators.CompareStudentByName;
 import Seminar3.student.Student;
-import Seminar3.students_group.StudentGroupIterator;
+import Seminar3.students_group.iterators.StudentGroupIterator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,7 +18,7 @@ public class StudentGroup implements Iterable<Student> {
     }
 
 
-    void addStudent(Student student){
+    public void addStudent(Student student){
         list.add(student);
     }
 
