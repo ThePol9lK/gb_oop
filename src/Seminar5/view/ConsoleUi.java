@@ -5,64 +5,93 @@ import Seminar5.presenter.Presenter;
 import java.util.Scanner;
 
 public class ConsoleUi implements View {
-
-    private Scanner scanner;
-    private Presenter presenter;
+    private final Scanner scanner;
+    private final Presenter presenter;
+    private boolean exit;
+    private final Menu menu;
 
     public ConsoleUi() {
         scanner = new Scanner(System.in);
         presenter = new Presenter(this);
+        exit = true;
+        menu = new Menu(this);
     }
-
-
 
     @Override
     public void start() {
-        while (true) {
-            System.out.println("1. Создать студента");
-            System.out.println("2. Получить список студентов");
-            System.out.println("3. Отсортировать по имени");
-            System.out.println("4. Отсортировать по возрасту");
-            System.out.println("5. Выход из программы");
+        while (exit) {
+            hello("Добрый день! Выберите одно из действий:");
+            printMenu();
+            execute();
+        }
+    }
 
-            String choice = scanner.nextLine();
-            // System.out.println(choice); // Уберите эту строку, если не хотите выводить выбор
+    private static void hello(String x) {
+        System.out.println(x);
+    }
 
-            switch (choice) {
-                case "1":
-                    addNewStudent();
-                    break;
-                case "2":
-                    presenter.showAllStudents();
-                    break;
-                case "3":
-                    presenter.showAllStudentsByName();
-                    break;
-                case "4":
-                    presenter.showAllStudentsByAge();
-                    break;
-                case "5":
-                    System.out.println("Всего доброго!");
-                    return; // Выход из цикла
-                default:
-                    break;
+    private void printMenu() {
+        printAnswer(menu.menu());
+    }
+
+    private void execute() {
+        String line = scanner.nextLine();
+        if (checkTextForInt(line)) {
+            int numCommand = Integer.parseInt(line);
+            if (checkCommand(numCommand)) {
+                menu.execute(numCommand);
             }
         }
     }
 
-    private void addNewStudent() {
-        System.out.println("Введите имя");
-        String name = scanner.nextLine();
-        System.out.println("Введите возраст");
-        int age = scanner.nextInt();
-        scanner.nextLine();  // Важно: сбрасываем оставшийся символ новой строки
-        presenter.addStudent(name, age);
-        System.out.println("Новый студент добавлен в список!");
+    private boolean checkCommand(int numCommand) {
+        if (numCommand <= menu.getSize()) {
+            return true;
+        } else {
+
+            return false;
+        }
+    }
+
+    private boolean checkTextForInt(String text) {
+        return text.matches("[0-9]+");
     }
 
 
+    public void showError(String x) {
+        System.out.println(x);
+    }
+
+    public void finish() {
+        exit = false;
+        System.out.println("Всего доброго!");
+    }
+
+    public void SortByAge() {
+        presenter.sortByAge();
+    }
+
+    public void getSortByName() {
+        presenter.sortByName();
+    }
+
+    public void printStudentGroup() {
+        presenter.printStudentInfo();
+    }
+
+    public void addStudent() {
+        System.out.println("Введите имя:");
+        String name = scanner.nextLine();
+
+        hello("Введите возраст:");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+
+        presenter.addStudent(name, age);
+    }
+
     @Override
     public void printAnswer(String answer) {
-        System.out.println(answer);
+        hello(answer);
     }
 }
